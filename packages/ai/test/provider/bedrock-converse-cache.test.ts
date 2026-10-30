@@ -61,13 +61,14 @@ describe("Bedrock Converse cache policy", () => {
               { role: "user", content: [{ text: "Question" }, { text: "<system-update>\nUpdate\n</system-update>" }] },
               {
                 role: "assistant",
-                content: id.includes("anthropic.claude-")
-                  ? [{ text: "Answer" }, { toolUse: { name: "lookup" } }]
-                  : [
-                      { text: "Answer" },
-                      { reasoningContent: { reasoningText: { text: "Unsigned reasoning" } } },
-                      { toolUse: { name: "lookup" } },
-                    ],
+                content:
+                  id.includes("anthropic.claude-") || id.includes(":application-inference-profile/")
+                    ? [{ text: "Answer" }, { toolUse: { name: "lookup" } }]
+                    : [
+                        { text: "Answer" },
+                        { reasoningContent: { reasoningText: { text: "Unsigned reasoning" } } },
+                        { toolUse: { name: "lookup" } },
+                      ],
               },
               { role: "user", content: [{ toolResult: { content: [{ json: "Result" }] } }] },
             ],

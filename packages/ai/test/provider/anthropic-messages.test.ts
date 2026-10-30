@@ -1051,6 +1051,12 @@ describe("Anthropic Messages route", () => {
         AnthropicMessages.route
           .with({ endpoint: { baseURL: "https://compatible.test/v1/" }, auth: Auth.bearer("test") })
           .model({ id: "xai/grok-4.7" }),
+        AnthropicMessages.route
+          .with({ endpoint: { baseURL: "https://compatible.test/v1/" }, auth: Auth.bearer("test") })
+          .model({ id: "sonnet-latest" }),
+        AnthropicMessages.route
+          .with({ endpoint: { baseURL: "https://compatible.test/v1/" }, auth: Auth.bearer("test") })
+          .model({ id: "duo-chat-opus-5-5" }),
       ]) {
         const prepared = yield* compileUnsignedReasoning(signed)
         expect(prepared.body.messages).toEqual([])

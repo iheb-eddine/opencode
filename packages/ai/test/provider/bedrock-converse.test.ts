@@ -1253,7 +1253,11 @@ describe("Bedrock Converse route", () => {
           { role: "assistant", content: [{ reasoningContent: { reasoningText: { text: "Unsigned thought" } } }] },
         ])
       }
-      for (const id of ["us.xai.grok-4.6", "us.openai.gpt-5.6-sol"]) {
+      for (const id of [
+        "us.xai.grok-4.6",
+        "us.openai.gpt-5.6-sol",
+        "arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/abc123",
+      ]) {
         const prepared = yield* compileRequest(
           LLM.request({
             model: bedrock.model(id),
